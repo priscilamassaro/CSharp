@@ -14,6 +14,10 @@ namespace Aula1105_POO
         public string Cpf { get; private set; }
 
         //Construtor
+
+        public Pessoa() {
+
+        }
         public Pessoa(string nome)
         {
             Nome = nome;
@@ -24,5 +28,6 @@ namespace Aula1105_POO
             Nome = nome;
             Cpf = cpf;
         }   
+        
     }
 }

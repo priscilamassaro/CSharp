@@ -8,6 +8,12 @@ namespace Aula1105_POO
 {
     class Aluno : Pessoa //aluno herda pessoa
     {        
+        public int matricula;
+
+        public Aluno(){
+        
+}
+
         public Aluno(string nome) : base(nome){
             Nome = nome;
         }
@@ -16,6 +22,11 @@ namespace Aula1105_POO
             {
             Nome = nome;
             Cpf = cpf;
+        }
+
+        public override string ShowInfoPessoa()
+        {
+            return "Aluno: " + Nome + ", CPF: " + Cpf + ", Matrícula: " + matricula;
         }
     }
 }
