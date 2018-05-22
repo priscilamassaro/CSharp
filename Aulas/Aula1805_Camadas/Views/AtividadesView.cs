@@ -10,48 +10,90 @@ namespace Aula1805_Camadas.Views
 {
     class AtividadesView
     {
+        enum OpcoesMenu
+	    {
+            CadastrarAtividade = 1,
+            ListarAtividades = 2,
+            EditarAtividade = 3,
+            ExcluirAtividade = 4,
+            BuscarPorNome = 5,
+            Sair = 6
+	    }
+
         AtividadesController ac = new AtividadesController();
 
         public void ExibirMenu()
         {
+
+            OpcoesMenu opcao = OpcoesMenu.Sair;
             int opcao = 6;
             do
             {
+                Console.Clear();
+
                 Console.WriteLine("====================================");
                 Console.WriteLine("= 1) Cadastrar Atividade =");
                 Console.WriteLine("= 2) Listar Atividades =");
                 Console.WriteLine("= 3) Editar Atividade =");
                 Console.WriteLine("= 4) Excluir Atividade =");
-                Console.WriteLine("= 5) Sair =");
+                Console.WriteLine("= 5) Buscar Atividade por nome =");
+                Console.WriteLine("= 6) Sair =");
                 Console.WriteLine("====================================");
 
                 Console.Write("Digite uma opção:");
                 opcao = int.Parse(Console.ReadLine());
 
                 switch (opcao)
-                {
-                    case 1:
-                        CadastrarAtividade(ac);
-                        break;
-
-                    case 2:
-                        ExibirAtividadesCadastradas();
-                        break;
-
-                    case 3:
-                        EditarAtividadeCadastrada();
-                        break;
-
-                    case 4:
-                        ExcluirAtividadeCadastrada();
-                        break;
-
-                    default:
-                        break;
+	                {
+		                case OpcoesMenu.CadastrarAtividade:
+                                break;
+                        case OpcoesMenu.ListarAtividades:
+                            break;
+                        case OpcoesMenu.EditarAtividade:
+                                break;
+                        case OpcoesMenu.ExcluirAtividade:
+                                break;
+                        case OpcoesMenu.BuscarPorNome:
+                                break;
+                        case OpcoesMenu.Sair:
+                                break;
+                        default:
+                                break;       
                 }
-                Console.ReadKey();
-            } while (opcao != 6);
+
+            } while (opcao != OpcoesMenu.Sair);
             
+        }
+
+        public static void ExibirDetalhesAtividade(Atividade a){
+            Console.WriteLine(" - Dados Atividade - ");
+            Console.WriteLine("ID: " + a.AtividadeID);
+            Console.WriteLine("Nome: " + a.Nome);
+            Console.WriteLine("Ativo: " + a.Ativo);
+            Console.WriteLine("--");
+            }
+
+        }
+
+        private void BuscarPorNome(string nome)
+        {
+            Console.WriteLine("-- Digite o nome da atividade a ser pesquisada: --");
+            string nomeAtividade = string.Parse(Console.ReadLine());
+
+            List<Atividade> atividades = ac.BuscarPorNome(nomeAtividade);
+
+            Console.WriteLine("--- Exibindo a lista das atividades pesquisadas: ---");
+
+            if (atividades.Count > 0 ){
+                {
+                    ExibirDetalhesAtividade(a);
+                }
+            }
+            else
+                Console.WriteLine("--- Não há atividades com o nome: " + nomeAtividade + "**");
+            
+            Console.WriteLine("--- Fim da lista das atividades pesquisadas ---");
+            Console.ReadKey();
         }
 
         private void ExcluirAtividadeCadastrada()
